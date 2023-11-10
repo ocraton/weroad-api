@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Travel;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class TravelSeeder extends Seeder
@@ -17,14 +16,16 @@ class TravelSeeder extends Seeder
         $data = json_decode($json, true);
 
         foreach ($data as $travel) {
-            Travel::create([
-                'id' => $travel['id'],
-                'slug' => $travel['slug'],
-                'name' => $travel['name'],
-                'description' => $travel['description'],
-                'numberOfDays' => $travel['numberOfDays'],
-                'moods' => $travel['moods'],
-            ]);
+            Travel::withoutEvents(function () use ($travel) {
+                Travel::create([
+                    'id' => $travel['id'],
+                    'slug' => $travel['slug'],
+                    'name' => $travel['name'],
+                    'description' => $travel['description'],
+                    'numberOfDays' => $travel['numberOfDays'],
+                    'moods' => $travel['moods'],
+                ]);
+            });
         }
     }
 }

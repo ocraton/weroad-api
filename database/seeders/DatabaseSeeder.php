@@ -18,24 +18,23 @@ class DatabaseSeeder extends Seeder
         $this->call([
             RoleSeeder::class,
             TravelSeeder::class,
-            TourSeeder::class
+            TourSeeder::class,
         ]);
 
         $admin = User::create([
             'name' => 'Admin',
             'email' => 'admin@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
         ]);
-        
-        
+
         $editor = User::create([
             'name' => 'Editor',
             'email' => 'editor@example.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('password'),
         ]);
-        
+
         $admin->roles()->attach('baf18948-721e-49f5-aa7f-bed1a5415cb6');
-        
+
         $editor->roles()->attach('9442703c-dd4f-4e36-9554-a60574c408be');
 
     }

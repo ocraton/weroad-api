@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Tour extends Model
 {
@@ -14,7 +14,7 @@ class Tour extends Model
     protected $fillable = [
         'travelId',
         'name',
-        'startingSate',
+        'startingDate',
         'endingDate',
         'price',
     ];
@@ -30,10 +30,10 @@ class Tour extends Model
         });
     }
 
-    protected function price(): Attribute
+    protected function getPrice(): Attribute
     {
         return Attribute::make(
-            get: fn (string $value) => $value/100,
+            get: fn (int $value) => ($value / 100),
         );
     }
 

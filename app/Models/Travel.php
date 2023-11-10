@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Travel extends Model
 {
@@ -17,21 +18,17 @@ class Travel extends Model
         'description',
         'numberOfDays',
         'numberOfNights',
-        'moods'
+        'moods',
     ];
 
     protected $casts = [
-        'moods' => 'array'
+        'moods' => 'array',
     ];
 
     protected static function booted(): void
     {
         static::creating(function (Travel $travel) {
-            $travel->numberOfNights = $travel->numberOfDays - 1;
-        });
-
-        static::updating(function (Travel $travel) {
-            $travel->numberOfNights = $travel->numberOfDays - 1;
+            $travel->slug = Str::slug($travel->name, '-');
         });
     }
 
@@ -40,5 +37,8 @@ class Travel extends Model
         return $this->hasMany(Tour::class, 'travelId');
     }
 
-
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

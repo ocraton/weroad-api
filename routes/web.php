@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
 
     Travel::create([
-        'id' =>'d408be33-aa6a-4c73-a2c8-58a70ab2ba4d',
+        'id' => 'd408be33-aa6a-4c73-a2c8-58a70ab2ba4d',
         'slug' => 'jordan-360',
         'name' => 'name',
         'description' => 'description',
