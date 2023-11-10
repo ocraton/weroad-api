@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Travel;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
+    Travel::create([
+        'id' =>'d408be33-aa6a-4c73-a2c8-58a70ab2ba4d',
+        'slug' => 'jordan-360',
+        'name' => 'name',
+        'description' => 'description',
+        'numberOfDays' => 2,
+        'moods' => 'moods',
+    ]);
+
     return view('welcome');
 });

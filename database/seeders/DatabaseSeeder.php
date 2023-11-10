@@ -14,9 +14,25 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $this->call([
+            RoleSeeder::class,
+            TravelSeeder::class,
+            TourSeeder::class
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@example.com',
+            'password' => bcrypt('password'),
+            'roleId' => 'baf18948-721e-49f5-aa7f-bed1a5415cb6', // admin
+        ]);
+
+        \App\Models\User::factory()->create([
+            'name' => 'Editor',
+            'email' => 'editor@example.com',
+            'password' => bcrypt('password'),
+            'roleId' => '9442703c-dd4f-4e36-9554-a60574c408be', // editor
+        ]);
+
     }
 }
