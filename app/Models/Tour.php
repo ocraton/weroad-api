@@ -12,7 +12,7 @@ class Tour extends Model
     use HasFactory, HasUuids;
 
     protected $fillable = [
-        'travel_id',
+        'travelId',
         'name',
         'startingSate',
         'endingDate',
@@ -35,5 +35,10 @@ class Tour extends Model
         return Attribute::make(
             get: fn (string $value) => $value/100,
         );
+    }
+
+    public function travel()
+    {
+        return $this->hasOne(Travel::class, 'id', 'travelId');
     }
 }

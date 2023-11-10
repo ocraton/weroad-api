@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,19 +21,22 @@ class DatabaseSeeder extends Seeder
             TourSeeder::class
         ]);
 
-        \App\Models\User::factory()->create([
+        $admin = User::create([
             'name' => 'Admin',
             'email' => 'admin@example.com',
-            'password' => bcrypt('password'),
-            'roleId' => 'baf18948-721e-49f5-aa7f-bed1a5415cb6', // admin
+            'password' => bcrypt('password')
         ]);
-
-        \App\Models\User::factory()->create([
+        
+        
+        $editor = User::create([
             'name' => 'Editor',
             'email' => 'editor@example.com',
-            'password' => bcrypt('password'),
-            'roleId' => '9442703c-dd4f-4e36-9554-a60574c408be', // editor
+            'password' => bcrypt('password')
         ]);
+        
+        $admin->roles()->attach('baf18948-721e-49f5-aa7f-bed1a5415cb6');
+        
+        $editor->roles()->attach('9442703c-dd4f-4e36-9554-a60574c408be');
 
     }
 }

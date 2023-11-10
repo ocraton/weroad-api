@@ -10,8 +10,6 @@ class Travel extends Model
 {
     use HasFactory, HasUuids;
 
-    protected $table = 'travels';
-
     protected $fillable = [
         'isPublic',
         'slug',
@@ -35,6 +33,11 @@ class Travel extends Model
         static::updating(function (Travel $travel) {
             $travel->numberOfNights = $travel->numberOfDays - 1;
         });
+    }
+
+    public function tours()
+    {
+        return $this->hasMany(Tour::class, 'travelId');
     }
 
 
