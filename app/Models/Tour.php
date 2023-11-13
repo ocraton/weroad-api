@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasMoney;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tour extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, HasMoney, HasUuids;
 
     protected $fillable = [
         'travelId',
@@ -21,19 +22,16 @@ class Tour extends Model
 
     protected static function booted(): void
     {
-        static::creating(function (Tour $tour) {
-            $tour->price = $tour->price * 100;
-        });
-
-        static::updating(function (Tour $tour) {
+        static::saving(function ($tour) {
             $tour->price = $tour->price * 100;
         });
     }
 
-    protected function getPrice(): Attribute
+    protected function price(): Attribute
     {
         return Attribute::make(
-            get: fn (int $value) => ($value / 100),
+            get: fn ($value) => $this->getMoneyFromDatabase($value),
+            set: fn ($value) => $this->saveMoneyToDatabase($value)
         );
     }
 

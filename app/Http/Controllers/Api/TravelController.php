@@ -15,7 +15,7 @@ class TravelController extends Controller
      */
     public function index()
     {
-        return TravelResource::collection(Travel::where('isPublic', true)->paginate(5));
+        return TravelResource::collection(Travel::where('isPublic', true)->paginate());
     }
 
     /**

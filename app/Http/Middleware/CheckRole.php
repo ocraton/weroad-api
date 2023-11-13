@@ -18,7 +18,7 @@ class CheckRole
 
         if (auth()->check()) {
 
-            if (auth()->user()->roles->contains('name', $roleName)) {
+            if (auth()->user()->roles()->where('name', $roleName)->exist()) {
                 return $next($request);
             }
         }
