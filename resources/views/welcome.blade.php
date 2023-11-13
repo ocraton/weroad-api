@@ -876,6 +876,9 @@
                     </svg> </span>
                 <sup style="transform: rotate(20deg);font-size:2rem">api</sup>
             </div>
+            <p class="mt-4">
+                <a href="{{ url('/docs') }}">Documentation</a>
+            </p>
         </div>
     </div>
 </body>
