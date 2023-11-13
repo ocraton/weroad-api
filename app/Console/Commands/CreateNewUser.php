@@ -30,25 +30,25 @@ class CreateNewUser extends Command
     public function handle()
     {
 
-        do{
+        do {
             $name = $this->ask('Please provide a Name');
             $validator = Validator::make(['name' => $name], ['name' => 'required|string|max:100']);
             $this->error($validator->errors()->first('name'));
         } while ($validator->fails());
 
-        do{
+        do {
             $email = $this->ask('Please provide an Email');
             $validator = Validator::make(['email' => $email], ['email' => 'required|email|unique:users,email']);
             $this->error($validator->errors()->first('email'));
         } while ($validator->fails());
 
-        do{
+        do {
             $password = $this->secret('Please provide a password');
             $validator = Validator::make(['password' => $password], ['password' => 'required']);
             $this->error($validator->errors()->first('password'));
         } while ($validator->fails());
 
-        try{
+        try {
 
             $roles = Role::all();
 
@@ -70,7 +70,7 @@ class CreateNewUser extends Command
             $user = User::create([
                 'name' => $name,
                 'email' => $email,
-                'password' => bcrypt($password)
+                'password' => bcrypt($password),
             ]);
 
             if ($roleChoice === 'admin') {
@@ -88,5 +88,4 @@ class CreateNewUser extends Command
         $this->info("User $name created successfully!");
 
     }
-
 }

@@ -27,7 +27,7 @@ class Travel extends Model
 
     protected static function booted(): void
     {
-        static::creating(function (Travel $travel) {
+        static::saving(function (Travel $travel) {
             $travel->slug = Str::slug($travel->name, '-');
         });
     }
