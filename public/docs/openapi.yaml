@@ -1,0 +1,625 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/user:
+    get:
+      summary: ''
+      operationId: getApiUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/login:
+    post:
+      summary: ''
+      operationId: postApiLogin
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/travels/{travel_slug}/tours':
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  links:
+                    first: 'http://localhost/api/travels/iceland-hunting-northern-lights/tours?page=1'
+                    last: 'http://localhost/api/travels/iceland-hunting-northern-lights/tours?page=1'
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    from: null
+                    last_page: 1
+                    links:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost/api/travels/iceland-hunting-northern-lights/tours?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    path: 'http://localhost/api/travels/iceland-hunting-northern-lights/tours'
+                    per_page: 15
+                    to: null
+                    total: 0
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'http://localhost/api/travels/iceland-hunting-northern-lights/tours?page=1'
+                      last:
+                        type: string
+                        example: 'http://localhost/api/travels/iceland-hunting-northern-lights/tours?page=1'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: string
+                        example: null
+                      last_page:
+                        type: integer
+                        example: 1
+                      links:
+                        type: array
+                        example:
+                          -
+                            url: null
+                            label: '&laquo; Previous'
+                            active: false
+                          -
+                            url: 'http://localhost/api/travels/iceland-hunting-northern-lights/tours?page=1'
+                            label: '1'
+                            active: true
+                          -
+                            url: null
+                            label: 'Next &raquo;'
+                            active: false
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: null
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            active:
+                              type: boolean
+                              example: false
+                      path:
+                        type: string
+                        example: 'http://localhost/api/travels/iceland-hunting-northern-lights/tours'
+                      per_page:
+                        type: integer
+                        example: 15
+                      to:
+                        type: string
+                        example: null
+                      total:
+                        type: integer
+                        example: 0
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                priceFrom:
+                  type: number
+                  description: ''
+                  example: 76414.993993
+                priceTo:
+                  type: number
+                  description: ''
+                  example: 1.7260321
+                dateFrom:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2023-11-13T15:36:38'
+                dateTo:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2023-11-13T15:36:38'
+                sortBy:
+                  type: string
+                  description: ''
+                  example: endingDate
+                  enum:
+                    - name
+                    - startingDate
+                    - endingDate
+                    - price
+                orderBy:
+                  type: string
+                  description: ''
+                  example: desc
+                  enum:
+                    - asc
+                    - desc
+      security: []
+    parameters:
+      -
+        in: path
+        name: travel_slug
+        description: 'The slug of the travel.'
+        example: iceland-hunting-northern-lights
+        required: true
+        schema:
+          type: string
+  /api/travels:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 4f4bd032-e7d4-402a-bdf6-aaf6be240d53
+                      isPublic: 1
+                      slug: iceland-hunting-northern-lights
+                      name: 'Iceland: hunting for the Northern Lights'
+                      description: "Why visit Iceland in winter? Because it is between October and March that this land offers the spectacle of the Northern Lights, one of the most incredible and magical natural phenomena in the world, visible only near the earth's two magnetic poles. Come with us on WeRoad to explore this land of ice and fire, full of contrasts and natural variety, where the energy of waterfalls and geysers meets the peace of the fjords... And when the ribbons of light of the aurora borealis twinkle in the sky before our enchanted eyes, we will know that we have found what we were looking for."
+                      numberOfDays: 8
+                      numberOfNights: 7
+                      moods:
+                        party: 10
+                        relax: 30
+                        nature: 100
+                        culture: 20
+                        history: 10
+                      created_at: '2023-11-13T12:24:47.000000Z'
+                      updated_at: '2023-11-13T12:24:47.000000Z'
+                    -
+                      id: 9a9a60f1-d4cd-4697-b24d-a81fdfcb0d62
+                      isPublic: 1
+                      slug: isole-lofoten
+                      name: 'Isole Lofoten'
+                      description: 'Lofoten Island are beautiful'
+                      numberOfDays: 23
+                      numberOfNights: 22
+                      moods: '["nature" => 80, "relax" => 30]'
+                      created_at: '2023-11-13T12:27:01.000000Z'
+                      updated_at: '2023-11-13T12:39:29.000000Z'
+                    -
+                      id: cbf304ae-a335-43fa-9e56-811612dcb601
+                      isPublic: 1
+                      slug: united-arab-emirates
+                      name: 'United Arab Emirates: from Dubai to Abu Dhabi'
+                      description: 'At Dubai and Abu Dhabi everything is huge and majestic: here futuristic engineering works and modern infrastructures meet historical districts, local souks (typical bazars), desert and the sea. In this tour we’ll discover Dubai, where we’ll get on top of the highest skyscraper ever built, the Burj Khalifa. We’ll then take a walk at the Dubai Mall, the biggest mall on the planet, and we’ll spend a night in the desert, with the sight of the skyline on the horizon keeping us company. Then, it will be Abu Dhabi’s tourn! Sheik Zayed’s Grand Mosque’s white marble awaits for us to remain stoked in front of its wonderfulness, and the sea will invade us with peacefulness. UAE are all to discover, we’ll just get a taste of it, but we guarantee you’ll get quite the idea!'
+                      numberOfDays: 7
+                      numberOfNights: 6
+                      moods:
+                        party: 70
+                        relax: 40
+                        nature: 30
+                        culture: 80
+                        history: 20
+                      created_at: '2023-11-13T12:24:47.000000Z'
+                      updated_at: '2023-11-13T12:24:47.000000Z'
+                    -
+                      id: d408be33-aa6a-4c73-a2c8-58a70ab2ba4d
+                      isPublic: 1
+                      slug: jordan-360
+                      name: 'Jordan 360°'
+                      description: "Jordan 360°: the perfect tour to discover the suggestive Wadi Rum desert, the ancient beauty of Petra, and much more.\n\nVisiting Jordan is one of the most fascinating things that everyone has to do once in their life.You are probably wondering \"Why?\". Well, that's easy: because this country keeps several passions! During our tour in Jordan, you can range from well-preserved archaeological masterpieces to trekkings, from natural wonders excursions to ancient historical sites, from camels trek in the desert to some time to relax.\nDo not forget to float in the Dead Sea and enjoy mineral-rich mud baths, it's one of the most peculiar attractions. It will be a tour like no other: this beautiful country leaves a memorable impression on everyone."
+                      numberOfDays: 8
+                      numberOfNights: 7
+                      moods:
+                        party: 10
+                        relax: 20
+                        nature: 80
+                        culture: 30
+                        history: 90
+                      created_at: '2023-11-13T12:24:47.000000Z'
+                      updated_at: '2023-11-13T12:24:47.000000Z'
+                  links:
+                    first: 'http://localhost/api/travels?page=1'
+                    last: 'http://localhost/api/travels?page=1'
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    from: 1
+                    last_page: 1
+                    links:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost/api/travels?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    path: 'http://localhost/api/travels'
+                    per_page: 15
+                    to: 4
+                    total: 4
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 4f4bd032-e7d4-402a-bdf6-aaf6be240d53
+                        isPublic: 1
+                        slug: iceland-hunting-northern-lights
+                        name: 'Iceland: hunting for the Northern Lights'
+                        description: "Why visit Iceland in winter? Because it is between October and March that this land offers the spectacle of the Northern Lights, one of the most incredible and magical natural phenomena in the world, visible only near the earth's two magnetic poles. Come with us on WeRoad to explore this land of ice and fire, full of contrasts and natural variety, where the energy of waterfalls and geysers meets the peace of the fjords... And when the ribbons of light of the aurora borealis twinkle in the sky before our enchanted eyes, we will know that we have found what we were looking for."
+                        numberOfDays: 8
+                        numberOfNights: 7
+                        moods:
+                          party: 10
+                          relax: 30
+                          nature: 100
+                          culture: 20
+                          history: 10
+                        created_at: '2023-11-13T12:24:47.000000Z'
+                        updated_at: '2023-11-13T12:24:47.000000Z'
+                      -
+                        id: 9a9a60f1-d4cd-4697-b24d-a81fdfcb0d62
+                        isPublic: 1
+                        slug: isole-lofoten
+                        name: 'Isole Lofoten'
+                        description: 'Lofoten Island are beautiful'
+                        numberOfDays: 23
+                        numberOfNights: 22
+                        moods: '["nature" => 80, "relax" => 30]'
+                        created_at: '2023-11-13T12:27:01.000000Z'
+                        updated_at: '2023-11-13T12:39:29.000000Z'
+                      -
+                        id: cbf304ae-a335-43fa-9e56-811612dcb601
+                        isPublic: 1
+                        slug: united-arab-emirates
+                        name: 'United Arab Emirates: from Dubai to Abu Dhabi'
+                        description: 'At Dubai and Abu Dhabi everything is huge and majestic: here futuristic engineering works and modern infrastructures meet historical districts, local souks (typical bazars), desert and the sea. In this tour we’ll discover Dubai, where we’ll get on top of the highest skyscraper ever built, the Burj Khalifa. We’ll then take a walk at the Dubai Mall, the biggest mall on the planet, and we’ll spend a night in the desert, with the sight of the skyline on the horizon keeping us company. Then, it will be Abu Dhabi’s tourn! Sheik Zayed’s Grand Mosque’s white marble awaits for us to remain stoked in front of its wonderfulness, and the sea will invade us with peacefulness. UAE are all to discover, we’ll just get a taste of it, but we guarantee you’ll get quite the idea!'
+                        numberOfDays: 7
+                        numberOfNights: 6
+                        moods:
+                          party: 70
+                          relax: 40
+                          nature: 30
+                          culture: 80
+                          history: 20
+                        created_at: '2023-11-13T12:24:47.000000Z'
+                        updated_at: '2023-11-13T12:24:47.000000Z'
+                      -
+                        id: d408be33-aa6a-4c73-a2c8-58a70ab2ba4d
+                        isPublic: 1
+                        slug: jordan-360
+                        name: 'Jordan 360°'
+                        description: "Jordan 360°: the perfect tour to discover the suggestive Wadi Rum desert, the ancient beauty of Petra, and much more.\n\nVisiting Jordan is one of the most fascinating things that everyone has to do once in their life.You are probably wondering \"Why?\". Well, that's easy: because this country keeps several passions! During our tour in Jordan, you can range from well-preserved archaeological masterpieces to trekkings, from natural wonders excursions to ancient historical sites, from camels trek in the desert to some time to relax.\nDo not forget to float in the Dead Sea and enjoy mineral-rich mud baths, it's one of the most peculiar attractions. It will be a tour like no other: this beautiful country leaves a memorable impression on everyone."
+                        numberOfDays: 8
+                        numberOfNights: 7
+                        moods:
+                          party: 10
+                          relax: 20
+                          nature: 80
+                          culture: 30
+                          history: 90
+                        created_at: '2023-11-13T12:24:47.000000Z'
+                        updated_at: '2023-11-13T12:24:47.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 4f4bd032-e7d4-402a-bdf6-aaf6be240d53
+                        isPublic:
+                          type: integer
+                          example: 1
+                        slug:
+                          type: string
+                          example: iceland-hunting-northern-lights
+                        name:
+                          type: string
+                          example: 'Iceland: hunting for the Northern Lights'
+                        description:
+                          type: string
+                          example: "Why visit Iceland in winter? Because it is between October and March that this land offers the spectacle of the Northern Lights, one of the most incredible and magical natural phenomena in the world, visible only near the earth's two magnetic poles. Come with us on WeRoad to explore this land of ice and fire, full of contrasts and natural variety, where the energy of waterfalls and geysers meets the peace of the fjords... And when the ribbons of light of the aurora borealis twinkle in the sky before our enchanted eyes, we will know that we have found what we were looking for."
+                        numberOfDays:
+                          type: integer
+                          example: 8
+                        numberOfNights:
+                          type: integer
+                          example: 7
+                        moods:
+                          type: object
+                          properties:
+                            party:
+                              type: integer
+                              example: 10
+                            relax:
+                              type: integer
+                              example: 30
+                            nature:
+                              type: integer
+                              example: 100
+                            culture:
+                              type: integer
+                              example: 20
+                            history:
+                              type: integer
+                              example: 10
+                        created_at:
+                          type: string
+                          example: '2023-11-13T12:24:47.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2023-11-13T12:24:47.000000Z'
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'http://localhost/api/travels?page=1'
+                      last:
+                        type: string
+                        example: 'http://localhost/api/travels?page=1'
+                      prev:
+                        type: string
+                        example: null
+                      next:
+                        type: string
+                        example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      links:
+                        type: array
+                        example:
+                          -
+                            url: null
+                            label: '&laquo; Previous'
+                            active: false
+                          -
+                            url: 'http://localhost/api/travels?page=1'
+                            label: '1'
+                            active: true
+                          -
+                            url: null
+                            label: 'Next &raquo;'
+                            active: false
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: null
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            active:
+                              type: boolean
+                              example: false
+                      path:
+                        type: string
+                        example: 'http://localhost/api/travels'
+                      per_page:
+                        type: integer
+                        example: 15
+                      to:
+                        type: integer
+                        example: 4
+                      total:
+                        type: integer
+                        example: 4
+      tags:
+        - Endpoints
+      security: []
+  '/api/editor/travels/{travel_id}':
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                isPublic:
+                  type: boolean
+                  description: ''
+                  example: true
+                name:
+                  type: string
+                  description: 'Must not be greater than 300 characters.'
+                  example: bnhmjglwealwftlnc
+                description:
+                  type: string
+                  description: ''
+                  example: velit
+                numberOfDays:
+                  type: string
+                  description: ''
+                  example: sit
+                moods:
+                  type: string
+                  description: ''
+                  example: recusandae
+              required:
+                - isPublic
+                - name
+                - description
+                - numberOfDays
+                - moods
+      security: []
+    parameters:
+      -
+        in: path
+        name: travel_id
+        description: 'The ID of the travel.'
+        example: iceland-hunting-northern-lights
+        required: true
+        schema:
+          type: string
+  /api/admin/travels:
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                isPublic:
+                  type: boolean
+                  description: ''
+                  example: true
+                name:
+                  type: string
+                  description: 'Must not be greater than 300 characters.'
+                  example: vzgqjs
+                description:
+                  type: string
+                  description: ''
+                  example: et
+                numberOfDays:
+                  type: string
+                  description: ''
+                  example: eum
+                moods:
+                  type: string
+                  description: ''
+                  example: voluptas
+              required:
+                - isPublic
+                - name
+                - description
+                - numberOfDays
+                - moods
+      security: []
+  /api/admin/tours:
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                travelId:
+                  type: string
+                  description: ''
+                  example: ducimus
+                name:
+                  type: string
+                  description: ''
+                  example: quo
+                startingDate:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2023-11-13T15:36:38'
+                endingDate:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2023-11-13T15:36:38'
+                price:
+                  type: number
+                  description: ''
+                  example: 13.9391527
+              required:
+                - travelId
+                - name
+                - startingDate
+                - endingDate
+                - price
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''

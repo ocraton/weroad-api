@@ -874,7 +874,7 @@
         h-6.133l-2.475-7.463l-2.476,7.463H8.128L0,5.007z"></path>
                         </g>
                     </svg> </span>
-                    <sup>api</sup>
+                <sup style="transform: rotate(20deg);font-size:2rem">api</sup>
             </div>
         </div>
     </div>
