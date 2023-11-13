@@ -20,13 +20,6 @@ class Tour extends Model
         'price',
     ];
 
-    protected static function booted(): void
-    {
-        static::saving(function ($tour) {
-            $tour->price = $tour->price * 100;
-        });
-    }
-
     protected function price(): Attribute
     {
         return Attribute::make(

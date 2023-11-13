@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ListTourRequest;
+use App\Http\Requests\StoreTourRequest;
 use App\Http\Resources\TourResource;
+use App\Models\Tour;
 use App\Models\Travel;
-use Illuminate\Http\Request;
 
 class TourController extends Controller
 {
@@ -40,24 +41,10 @@ class TourController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTourRequest $request)
     {
-        //
-    }
+        $tour = Tour::create($request->validated());
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        return new TourResource($tour);
     }
 }

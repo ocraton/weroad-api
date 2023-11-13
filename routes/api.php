@@ -37,4 +37,6 @@ Route::middleware(['auth:sanctum', 'role:admin'])->prefix('admin')->group(functi
 
     Route::post('travels', [TravelController::class, 'store']);
 
+    Route::post('tours', [TourController::class, 'store']);
+
 });
