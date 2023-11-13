@@ -27,6 +27,12 @@ Route::get('travels/{travel}/tours', [TourController::class, 'index']);
 
 Route::get('travels', [TravelController::class, 'index']);
 
+Route::middleware(['auth:sanctum', 'role:editor'])->prefix('editor')->group(function () {
+
+    Route::put('travels/{travel:id}', [TravelController::class, 'update']);
+
+});
+
 Route::middleware(['auth:sanctum', 'role:admin'])->prefix('admin')->group(function () {
 
     Route::post('travels', [TravelController::class, 'store']);

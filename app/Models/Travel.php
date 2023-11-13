@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Travel extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, HasSlug, HasUuids;
 
     protected $fillable = [
         'isPublic',
@@ -25,11 +26,11 @@ class Travel extends Model
         'moods' => 'array',
     ];
 
-    protected static function booted(): void
+    public function getSlugOptions(): SlugOptions
     {
-        static::saving(function (Travel $travel) {
-            $travel->slug = Str::slug($travel->name, '-');
-        });
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
     }
 
     public function tours()

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTravelRequest;
 use App\Http\Resources\TravelResource;
 use App\Models\Travel;
-use Illuminate\Http\Request;
 
 class TravelController extends Controller
 {
@@ -16,14 +15,6 @@ class TravelController extends Controller
     public function index()
     {
         return TravelResource::collection(Travel::where('isPublic', true)->paginate());
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -37,34 +28,12 @@ class TravelController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreTravelRequest $request, Travel $travel)
     {
-        //
-    }
+        $travel->update($request->validated());
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return new TravelResource($travel);
     }
 }

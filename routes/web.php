@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Travel;
 use Illuminate\Support\Facades\Route;
 
 /*

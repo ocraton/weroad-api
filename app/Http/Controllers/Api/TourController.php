@@ -29,20 +29,12 @@ class TourController extends Controller
                 $query->where('price', '<=', $request->priceTo * 100);
             })
             ->when($request->sortBy && $request->orderBy, function ($query) use ($request) {
-               $query->orderBy($request->sortBy, $request->orderBy); 
+                $query->orderBy($request->sortBy, $request->orderBy);
             })
             ->orderBy('startingDate')
             ->paginate();
 
         return TourResource::collection($tours);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -62,25 +54,9 @@ class TourController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
     {
         //
     }
